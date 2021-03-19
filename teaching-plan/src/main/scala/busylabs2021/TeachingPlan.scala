@@ -16,6 +16,4 @@
 
 package busylabs2021
 
-object TeachingPlan {
-
-}
+object TeachingPlan {}

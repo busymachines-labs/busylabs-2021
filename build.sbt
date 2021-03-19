@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-ThisBuild / organization     := "com.busymachines"
-ThisBuild / organizationName := "BusyMachines"
-ThisBuild / homepage         := Option(url("https://www.busymachines.com/"))
-ThisBuild / startYear        := Some(2021)
-ThisBuild / licenses         := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0"))
+Global / organization     := "com.busymachines"
+Global / organizationName := "BusyMachines"
+Global / homepage         := Option(url("https://www.busymachines.com/"))
+Global / startYear        := Some(2021)
+Global / licenses         := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0"))
 
 //=============================================================================
 //=============================================================================
@@ -30,6 +30,8 @@ lazy val root =
       Compile / mainClass := Option("busylabs2021.Main")
     )
     .dependsOn(
+       `teaching-plan`
+    ).aggregate(
        `teaching-plan`
     )
 
