@@ -26,7 +26,10 @@ ThisBuild / licenses         := List("Apache-2.0" -> url("http://www.apache.org/
 lazy val root =
   Project(id = "busylabs-2021", base = file("."))
     .settings(commonSettings)
-    .aggregate(
+    .settings(
+      Compile / mainClass := Option("busylabs2021.Main")
+    )
+    .dependsOn(
        `teaching-plan`
     )
 
