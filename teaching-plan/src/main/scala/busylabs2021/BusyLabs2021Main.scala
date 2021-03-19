@@ -20,7 +20,7 @@ import cats.implicits._
 import cats.effect._
 import cats.effect.std._
 
-object Main extends IOApp.Simple {
+object BusyLabs2021Main extends IOApp.Simple {
   private val console = Console[IO]
 
   override def run: IO[Unit] = for {
@@ -33,6 +33,10 @@ object Main extends IOApp.Simple {
       "Check out the TeachingPlan - written as a Scala program - for an outline of what we'll be learning"
     )
     _ <- newline
+    _ <- tab *> console.println(
+      "!! You'll have to close me manually now. Otherwise I'm keeping this process alive !!"
+    )
+    _ <- IO.never[Unit]
   } yield ()
 
   private val newline: IO[Unit] = console.println("")

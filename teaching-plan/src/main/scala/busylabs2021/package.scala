@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 
-package busylabs2021
+package object busylabs2021
+  extends busymachines.pureharm.PureharmCoreAliases with busymachines.pureharm.PureharmCoreImplicits {
 
-object TeachingPlan {}
+  implicit class SproutPostfixOps[O](o: O) {
+    def sprout[N](implicit ns: NewType[O, N]): N = ns.newType(o)
+  }
+}
