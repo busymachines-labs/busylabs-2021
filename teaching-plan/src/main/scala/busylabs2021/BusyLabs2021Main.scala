@@ -36,6 +36,9 @@ object BusyLabs2021Main extends IOApp.Simple {
     _ <- tab *> console.println(
       "!! You'll have to close me manually now. Otherwise I'm keeping this process alive !!"
     )
+    _ <- console.println("We are running ALL examples now")
+    _ <- teaching.TeachingPlan.allTopics.traverse_(InDepthExampleExecution.runTopic)
+
     _ <- IO.never[Unit]
   } yield ()
 

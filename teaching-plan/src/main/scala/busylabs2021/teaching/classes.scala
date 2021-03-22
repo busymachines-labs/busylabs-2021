@@ -21,8 +21,8 @@ import cats.effect.IO
 final case class Topic(
   title:       Title,
   description: Description,
-  subTopics:   List[Topic],
   examples:    List[Example],
+  subTopics:   List[Topic],
 )
 
 final case class Example(

@@ -22,6 +22,12 @@ import cats.effect.IO
 
 object TeachingPlan {
 
+  def allTopics: List[Topic] = List(
+    SettingThingsUp,
+    ScalaBasics,
+    AgainstTheGrain,
+  )
+
   def SettingThingsUp: Topic =
     Topic(
       title       = "Settings things up".sprout[Title],
@@ -229,16 +235,16 @@ object TeachingPlan {
               newline()
               newline()
               tab()
-              println("Hello BusyMachines Liga AC 2021 students!")
+              println("IMPERATIVE Hello BusyMachines Liga AC 2021 students!")
               newline()
               tab()
               newline()
               tab()
               println(
-                "Check out the TeachingPlan - written as a Scala program - for an outline of what we'll be learning"
+                "IMPERATIVE Check out the TeachingPlan - written as a Scala program - for an outline of what we'll be learning"
               )
               tab()
-              println("!! You'll have to close me manually now. Otherwise I'm keeping this process alive !!")
+              println("IMPERATIVE !! You'll have to close me manually now. Otherwise I'm keeping this process alive !!")
               while (true) {}
             }
             IO(imperativeCode())
