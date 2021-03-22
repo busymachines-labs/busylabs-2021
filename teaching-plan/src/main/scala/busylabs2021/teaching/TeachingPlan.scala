@@ -41,14 +41,7 @@ object TeachingPlan {
                            |  we use will be running our programs on.
                            |""".stripMargin.sprout[Description],
           subTopics   = List.empty,
-          examples    = List(
-            Example(
-              description = """|
-                               |
-                               |""".stripMargin.sprout[Description],
-              run         = IO.unit,
-            )
-          ),
+          examples    = List.empty,
         ),
         Topic(
           title       = """`sbt` - Scala build tool""".sprout[Title],
@@ -225,7 +218,33 @@ object TeachingPlan {
           ),
         ),
       ),
-      examples    = List.empty,
+      examples    = List(
+        Example(
+          description = "Example of Imperative version of out main app".sprout[Description],
+          run         = {
+            def imperativeCode(): Unit = {
+              def newline(): Unit = scala.Predef.println("")
+              def tab():     Unit = scala.Predef.println("  ")
+
+              newline()
+              newline()
+              tab()
+              println("Hello BusyMachines Liga AC 2021 students!")
+              newline()
+              tab()
+              newline()
+              tab()
+              println(
+                "Check out the TeachingPlan - written as a Scala program - for an outline of what we'll be learning"
+              )
+              tab()
+              println("!! You'll have to close me manually now. Otherwise I'm keeping this process alive !!")
+              while (true) {}
+            }
+            IO(imperativeCode())
+          },
+        )
+      ),
     )
 
   def ScalaBasics: Topic = Topic(
