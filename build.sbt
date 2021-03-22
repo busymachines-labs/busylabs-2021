@@ -20,6 +20,23 @@ Global / homepage         := Option(url("https://www.busymachines.com/"))
 Global / startYear        := Some(2021)
 Global / licenses         := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0"))
 
+//============================================================================================
+//============================================================================================
+//======================================= DEPENDENCIES =======================================
+//============================================================================================
+//============================================================================================
+
+val pureharmCoreV = "0.1.0"     //https://github.com/busymachines/pureharm-core/releases
+val catsV         = "2.4.2"     //https://github.com/typelevel/cats/releases
+val catsEffectV   = "3.0.0-RC2" //https://github.com/typelevel/cats-effect/releases
+val fs2V          = "3.0.0-M9"  //https://github.com/functional-streams-for-scala/fs2/releases
+
+val pureharmCore: ModuleID = "com.busymachines" %% "pureharm-core" % pureharmCoreV withSources ()
+val catsCore:     ModuleID = "org.typelevel"    %% "cats-core"     % catsV         withSources ()
+val catsEffect:   ModuleID = "org.typelevel"    %% "cats-effect"   % catsEffectV   withSources ()
+val fs2Core:      ModuleID = "co.fs2"           %% "fs2-core"      % fs2V          withSources ()
+val fs2IO:        ModuleID = "co.fs2"           %% "fs2-io"        % fs2V          withSources ()
+
 //=============================================================================
 //=============================================================================
 
@@ -137,20 +154,3 @@ def betterForPluginCompilerFlags: Seq[String] = Seq(
   "-P:bm4:no-tupling:y",       // see https://github.com/oleg-py/better-monadic-for#desugar-bindings-as-vals-instead-of-tuples--pbm4no-tuplingy
   "-P:bm4:implicit-patterns:y",// see https://github.com/oleg-py/better-monadic-for#define-implicits-in-for-comprehensions-or-matches
 )
-
-//============================================================================================
-//============================================================================================
-//======================================= DEPENDENCIES =======================================
-//============================================================================================
-//============================================================================================
-
-val pureharmCoreV = "0.1.0"     //https://github.com/busymachines/pureharm-core/releases
-val catsV         = "2.4.2"     //https://github.com/typelevel/cats/releases
-val catsEffectV   = "3.0.0-RC2" //https://github.com/typelevel/cats-effect/releases
-val fs2V          = "3.0.0-M9"  //https://github.com/functional-streams-for-scala/fs2/releases
-
-val pureharmCore: ModuleID = "com.busymachines" %% "pureharm-core" % pureharmCoreV withSources ()
-val catsCore:     ModuleID = "org.typelevel"    %% "cats-core"     % catsV         withSources ()
-val catsEffect:   ModuleID = "org.typelevel"    %% "cats-effect"   % catsEffectV   withSources ()
-val fs2Core:      ModuleID = "co.fs2"           %% "fs2-core"      % fs2V          withSources ()
-val fs2IO:        ModuleID = "co.fs2"           %% "fs2-io"        % fs2V          withSources ()
