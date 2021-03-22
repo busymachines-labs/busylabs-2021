@@ -17,6 +17,7 @@
 package busylabs2021.teaching
 
 import busylabs2021._
+import cats.implicits._
 import cats.effect.IO
 
 object TeachingPlan {
@@ -226,6 +227,122 @@ object TeachingPlan {
       ),
       examples    = List.empty,
     )
+
+  def ScalaBasics: Topic = Topic(
+    title       = "Scala basics".sprout[Title],
+    description = """|Here you have a short list of Scala features we'll be using
+                     |with some examples. The first example are these data structures
+                     |here!
+                     |
+                     |It's all Scala code!
+                     |""".stripMargin.sprout[Description],
+    subTopics   = List(
+      Topic(
+        title       = "Strings".sprout[Title],
+        description = """|Well, this is a string really, when we create a string w/ 3 quotes, then
+                         |we can write anything without needing to escape characters,
+                         |other than that it's similar to the Java syntax
+                         |
+                         |""".stripMargin.sprout[Description],
+        subTopics   = List.empty,
+        examples    = List(
+          Example(
+            description = """|String interpolator
+                             |We construct these string by prefixing quotes w/ s"my string here".
+                             |""".stripMargin.sprout[Description],
+            run         = {
+              val plainString   = "plain string"
+              val int           = 42
+              val list          = List(int)
+              val complexString =
+                s"""|we constructed a complex string from:
+                    |a $plainString
+                    |an int $int 
+                    |a list which I turn into a pretty string ${list.mkString("[", ",", "]")}
+                    |
+                    |Each time we insert a value in the interpolator, if its type is not
+                    |String, then the .toString (equivalent to what we have from Java)
+                    |method will be called on it.
+                    |
+                    |Therefore, it's ofttimes to use a more typesafe variant of the interpolator
+                    |available in cats. See next section.
+                    |""".stripMargin
+              IO.println(complexString)
+            },
+          ),
+          Example(
+            description = """|Show interpolator
+                             |Available from cats._
+                             |N.B., in pure-movie-server via `import phms._`
+                             |
+                             |Its syntax is almost identical to that of s"", but semantically it
+                             |does not call the .toString method on the values you insert.
+                             |
+                             |Rather, you have to provide so called Show typeclasses (we'll see at a later time)
+                             |for each value. This is a more typesafe version, as not everything should
+                             |be showable, e.g. passwords.
+                             |
+                             |For now we'll keep using the s"" interpolator.
+                             |""".stripMargin.sprout[Description],
+            run         = {
+              val plainString = "plain string"
+              val int         = 42
+              val list        = List(int)
+              val shoString   =
+                show"""|we constructed a complex string from:
+                       |a $plainString -- by default strings have a Show[String] instance
+                       |an int $int -- by default ints have a Show[Int] instance
+                       |a list which I turn into a pretty string ${list.mkString("[", ",", "]")}
+                       |
+                       |But if I'd try to put SettingThingsUp this would not compile.
+                       |Go ahead, put a dollar sign before that, and see for yourself.
+                       |""".stripMargin
+              IO.println(shoString)
+            },
+          ),
+        ),
+      ),
+      Topic(
+        title       = "Case class".sprout[Title],
+        description = """|We will be using a bunch of case classes, everywhere!
+                         |The syntax is fairly intuitive:
+                         |
+                         |```scala
+                         |final case class Topic(
+                         |  title:       Title,
+                         |  description: Description,
+                         |  subTopics:   List[Topic],
+                         |  examples:    List[Example],
+                         |)
+                         |```
+                         |
+                         |We have a class with 4 named immutable fields
+                         |""".stripMargin.sprout[Description],
+        subTopics   = List.empty,
+        examples    = List(
+          Example(
+            description = """Instantiating a case class""".sprout[Description],
+            run         = {
+              case class Test(int: Int, string: String)
+              val v1 = Test(42, "just an example") //this is how we create
+              //this is how we alter the case class by making a new copy
+              //and keeping the string field as is in the original
+              val v2 = v1.copy(int = 55)
+              for {
+                _ <- IO.println(
+                  "Here we showcase how to construct more complex strings using the 's' interpolator to insert values where needed"
+                )
+                _ <- IO.println(s"Notice how v1=$v1 is unchanged!")
+                _ <- IO.println(s"This is v2=$v2")
+                _ <- IO.println(s"Really, this is most you need to know about case classes for now")
+              } yield ()
+            },
+          )
+        ),
+      ),
+    ),
+    examples    = List.empty,
+  )
 
   def AgainstTheGrain: Topic = Topic(
     title       = "Against the grain".sprout[Title],
