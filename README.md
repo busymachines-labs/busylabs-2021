@@ -3,8 +3,7 @@
 ## setup
 
 - It is highly recommended that you run some kind of linux, or macOS. You can program Scala and install all tools listed here on Windows, BUT:
-
-  - you will not be able to run the `pure-movie-server` which is our reference server implementation. The reason for this is that the crypto library we use simply doesn't support windows.
+  - setting up docker environment on windows can be a bit of a pain
   - none of us really have Windows experience, so we can't help you debug setup problems as easily. Ideally you'd do a dual boot windows/ubuntu installation if you're running windows. It's not recommended to run a VM w/ ubuntu because development will be slow as hell, and you'd need at least 4GB of RAM just for the VM.
   - eventually you have to learn
 
